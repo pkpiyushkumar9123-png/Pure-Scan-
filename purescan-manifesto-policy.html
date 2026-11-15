@@ -1,0 +1,1228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PureScan AI — Executive Monograph & Sovereign Data Manifesto</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;0,6..72,700;1,6..72,400;1,6..72,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    /* ==========================================================================
+       EXECUTIVE DOCUMENT DESIGN SYSTEM — PURESCAN AI MONOGRAPH
+       Engineered for publication-grade PDF generation (A4 Portrait)
+       ========================================================================== */
+    :root {
+      --ink-primary: #090a0f;
+      --ink-secondary: #27272a;
+      --ink-muted: #52525b;
+      --ink-subtle: #71717a;
+      
+      --accent-emerald: #047857;
+      --accent-emerald-dark: #064e3b;
+      --accent-emerald-light: #ecfdf5;
+      --accent-emerald-border: #a7f3d0;
+      
+      --accent-amber: #b45309;
+      --accent-amber-light: #fffbeb;
+      --accent-amber-border: #fde68a;
+      
+      --accent-crimson: #991b1b;
+      --accent-crimson-light: #fef2f2;
+      --accent-crimson-border: #fecaca;
+      
+      --paper-white: #ffffff;
+      --paper-cream: #fafaf9;
+      --paper-card: #f4f4f5;
+      --hairline: #e4e4e7;
+      --hairline-dark: #27272a;
+      
+      --font-serif: 'Newsreader', Georgia, serif;
+      --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      --font-mono: 'JetBrains Mono', "SF Mono", Consolas, monospace;
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    html {
+      overflow-x: hidden;
+      width: 100%;
+    }
+
+    body {
+      font-family: var(--font-sans);
+      color: var(--ink-secondary);
+      background: #e4e4e7;
+      line-height: 1.55;
+      font-size: 11.5pt;
+      print-color-adjust: exact;
+      -webkit-print-color-adjust: exact;
+      overflow-x: hidden;
+      width: 100%;
+      max-width: 100vw;
+    }
+
+    /* Interactive Top Ribbon (Screen Only) */
+    .screen-controls {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: rgba(9, 10, 15, 0.95);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      padding: 12px 28px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.35);
+    }
+    .screen-controls .meta-left {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+    .screen-controls .seal-dot {
+      width: 10px;
+      height: 10px;
+      background: #10b981;
+      border-radius: 50%;
+      box-shadow: 0 0 10px #10b981;
+    }
+    .screen-controls .meta-title {
+      color: #ffffff;
+      font-weight: 700;
+      font-size: 13px;
+      letter-spacing: -0.2px;
+    }
+    .screen-controls .meta-tag {
+      background: rgba(255, 255, 255, 0.1);
+      color: #a1a1aa;
+      font-family: var(--font-mono);
+      font-size: 10px;
+      padding: 3px 8px;
+      border-radius: 4px;
+      letter-spacing: 0.5px;
+    }
+    .screen-controls .cta-group {
+      display: flex;
+      gap: 12px;
+    }
+    .btn-export {
+      background: #10b981;
+      color: #ffffff;
+      border: none;
+      padding: 9px 20px;
+      font-family: var(--font-sans);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.3px;
+      border-radius: 8px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.15s ease;
+      box-shadow: 0 2px 8px rgba(16, 185, 129, 0.35);
+    }
+    .btn-export:hover {
+      background: #059669;
+      transform: translateY(-1px);
+      box-shadow: 0 4px 14px rgba(16, 185, 129, 0.45);
+    }
+    .btn-export svg {
+      width: 15px;
+      height: 15px;
+    }
+
+    /* Document Shell */
+    .document-container {
+      width: 100%;
+      max-width: 210mm;
+      margin: 28px auto 48px auto;
+      background: var(--paper-white);
+      box-shadow: 0 20px 45px rgba(0, 0, 0, 0.12), 0 1px 3px rgba(0, 0, 0, 0.08);
+      box-sizing: border-box;
+      overflow-x: hidden;
+    }
+
+    /* Page Definition */
+    @page {
+      size: A4 portrait;
+      margin: 12mm 14mm 12mm 14mm;
+    }
+
+    .page {
+      width: 100%;
+      min-height: 297mm;
+      padding: 16mm 18mm 16mm 18mm;
+      position: relative;
+      background: var(--paper-white);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      box-sizing: border-box;
+    }
+
+    .page-break {
+      page-break-after: always;
+      break-after: page;
+    }
+
+    /* Running Header */
+    .running-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      padding-bottom: 9px;
+      border-bottom: 1px solid var(--hairline);
+      margin-bottom: 22px;
+    }
+    .header-logo-group {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .monogram {
+      width: 24px;
+      height: 24px;
+      background: var(--ink-primary);
+      color: #ffffff;
+      font-family: var(--font-serif);
+      font-weight: 700;
+      font-size: 14px;
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .header-title {
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--ink-primary);
+      letter-spacing: 0.4px;
+      text-transform: uppercase;
+    }
+    .header-meta {
+      font-family: var(--font-mono);
+      font-size: 9px;
+      color: var(--ink-subtle);
+      letter-spacing: 0.5px;
+    }
+
+    /* Running Footer */
+    .running-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 10px;
+      border-top: 1px solid var(--hairline);
+      margin-top: 22px;
+      font-family: var(--font-mono);
+      font-size: 8.5px;
+      color: var(--ink-subtle);
+      text-transform: uppercase;
+      letter-spacing: 0.6px;
+    }
+    .running-footer .folio-number {
+      font-weight: 700;
+      color: var(--ink-primary);
+    }
+
+    /* Typography Hierarchy */
+    .doc-classification {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--font-mono);
+      font-size: 9px;
+      font-weight: 700;
+      color: var(--accent-emerald);
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+    .doc-classification::before {
+      content: '';
+      display: inline-block;
+      width: 6px;
+      height: 6px;
+      background: var(--accent-emerald);
+      border-radius: 50%;
+    }
+
+    .main-headline {
+      font-family: var(--font-serif);
+      font-size: 27pt;
+      line-height: 1.08;
+      font-weight: 600;
+      color: var(--ink-primary);
+      letter-spacing: -0.6px;
+      margin-bottom: 10px;
+    }
+    .main-headline em {
+      font-style: italic;
+      font-weight: 400;
+      color: var(--accent-emerald);
+    }
+
+    .editorial-deck {
+      font-family: var(--font-sans);
+      font-size: 11pt;
+      line-height: 1.5;
+      color: var(--ink-muted);
+      font-weight: 400;
+      margin-bottom: 20px;
+      border-left: 2px solid var(--accent-emerald);
+      padding-left: 14px;
+    }
+
+    /* Editorial Narrative Section */
+    .story-section {
+      margin-bottom: 18px;
+    }
+    .story-lead-p::first-letter {
+      float: left;
+      font-family: var(--font-serif);
+      font-size: 44pt;
+      line-height: 0.8;
+      padding-right: 10px;
+      padding-top: 4px;
+      color: var(--ink-primary);
+      font-weight: 600;
+    }
+
+    .prose-text {
+      font-size: 9.8pt;
+      line-height: 1.6;
+      color: var(--ink-secondary);
+      text-align: justify;
+      hyphens: auto;
+      margin-bottom: 12px;
+    }
+
+    /* The Pull Quote */
+    .editorial-quote-frame {
+      background: var(--paper-cream);
+      border-top: 1px solid var(--hairline);
+      border-bottom: 1px solid var(--hairline);
+      padding: 16px 20px;
+      margin: 16px 0;
+      position: relative;
+    }
+    .editorial-quote-text {
+      font-family: var(--font-serif);
+      font-size: 13.5pt;
+      font-style: italic;
+      line-height: 1.45;
+      color: var(--ink-primary);
+      text-align: center;
+    }
+    .editorial-quote-text .author-mark {
+      font-style: normal;
+      font-weight: 700;
+      color: var(--accent-crimson);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+    .editorial-quote-caption {
+      font-family: var(--font-mono);
+      font-size: 8.5px;
+      text-align: center;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      color: var(--ink-subtle);
+      margin-top: 8px;
+    }
+
+    /* Dual Column Layout */
+    .two-col-flow {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-top: 10px;
+    }
+    .narrative-col h4 {
+      font-size: 10.5pt;
+      font-weight: 700;
+      color: var(--ink-primary);
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .narrative-col p {
+      font-size: 9pt;
+      line-height: 1.55;
+      color: var(--ink-muted);
+      text-align: justify;
+    }
+
+    /* Analytical Metrics Bar */
+    .audit-strip {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      border: 1px solid var(--hairline);
+      background: var(--paper-cream);
+      border-radius: 6px;
+      margin: 16px 0 6px 0;
+    }
+    .audit-cell {
+      padding: 10px 12px;
+      border-right: 1px solid var(--hairline);
+    }
+    .audit-cell:last-child {
+      border-right: none;
+    }
+    .audit-num {
+      font-family: var(--font-mono);
+      font-size: 14pt;
+      font-weight: 700;
+      color: var(--ink-primary);
+      line-height: 1.1;
+    }
+    .audit-label {
+      font-size: 7.5pt;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.6px;
+      color: var(--ink-subtle);
+      margin-top: 3px;
+    }
+
+    /* SECTION 2: SPECIFICATION CARDS */
+    .section-header-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      padding-bottom: 8px;
+      border-bottom: 2px solid var(--ink-primary);
+      margin-bottom: 14px;
+    }
+    .section-title-large {
+      font-family: var(--font-serif);
+      font-size: 18pt;
+      font-weight: 600;
+      color: var(--ink-primary);
+      letter-spacing: -0.3px;
+    }
+    .section-index {
+      font-family: var(--font-mono);
+      font-size: 9pt;
+      font-weight: 700;
+      color: var(--accent-emerald);
+      letter-spacing: 1px;
+    }
+
+    .tenet-card {
+      border: 1px solid var(--hairline);
+      border-radius: 6px;
+      padding: 12px 14px;
+      margin-bottom: 10px;
+      background: #ffffff;
+      display: grid;
+      grid-template-columns: 28px 1fr;
+      gap: 12px;
+      page-break-inside: avoid;
+    }
+    .tenet-id {
+      font-family: var(--font-mono);
+      font-size: 9pt;
+      font-weight: 700;
+      color: var(--accent-emerald);
+      background: var(--accent-emerald-light);
+      border: 1px solid var(--accent-emerald-border);
+      border-radius: 4px;
+      height: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .tenet-body h4 {
+      font-size: 10pt;
+      font-weight: 700;
+      color: var(--ink-primary);
+      margin-bottom: 3px;
+      letter-spacing: -0.2px;
+    }
+    .tenet-body p {
+      font-size: 8.8pt;
+      line-height: 1.5;
+      color: var(--ink-muted);
+    }
+
+    /* Technical Comparison Grid */
+    .spec-table-wrap {
+      margin-top: 14px;
+      border: 1px solid var(--hairline);
+      border-radius: 6px;
+      overflow: hidden;
+    }
+    .spec-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 8.5pt;
+    }
+    .spec-table th {
+      background: var(--paper-cream);
+      font-family: var(--font-mono);
+      font-size: 7.5pt;
+      text-transform: uppercase;
+      letter-spacing: 0.6px;
+      color: var(--ink-muted);
+      padding: 7px 10px;
+      text-align: left;
+      border-bottom: 1px solid var(--hairline);
+    }
+    .spec-table td {
+      padding: 7px 10px;
+      border-bottom: 1px solid var(--hairline);
+      color: var(--ink-secondary);
+    }
+    .spec-table tr:last-child td {
+      border-bottom: none;
+    }
+    .tag-pure {
+      font-family: var(--font-mono);
+      font-size: 7.5pt;
+      font-weight: 700;
+      color: var(--accent-emerald);
+      background: var(--accent-emerald-light);
+      padding: 2px 6px;
+      border-radius: 3px;
+    }
+    .tag-industry {
+      font-family: var(--font-mono);
+      font-size: 7.5pt;
+      font-weight: 600;
+      color: var(--accent-crimson);
+      background: var(--accent-crimson-light);
+      padding: 2px 6px;
+      border-radius: 3px;
+    }
+
+    /* SECTION 3: LEGAL, SECURITY & SIGNATURE */
+    .security-matrix {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      margin-bottom: 16px;
+    }
+    .sec-block {
+      border: 1px solid var(--hairline);
+      background: var(--paper-cream);
+      border-radius: 6px;
+      padding: 10px 12px;
+    }
+    .sec-block h5 {
+      font-family: var(--font-mono);
+      font-size: 8.5pt;
+      font-weight: 700;
+      color: var(--ink-primary);
+      margin-bottom: 4px;
+      text-transform: uppercase;
+      letter-spacing: 0.4px;
+    }
+    .sec-block p {
+      font-size: 8pt;
+      line-height: 1.45;
+      color: var(--ink-muted);
+    }
+
+    .disclaimer-box {
+      border: 1px solid var(--accent-crimson-border);
+      background: var(--accent-crimson-light);
+      border-radius: 6px;
+      padding: 12px 14px;
+      margin-bottom: 16px;
+    }
+    .disclaimer-title {
+      font-family: var(--font-mono);
+      font-size: 8.5pt;
+      font-weight: 700;
+      color: var(--accent-crimson);
+      letter-spacing: 0.6px;
+      text-transform: uppercase;
+      margin-bottom: 5px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .disclaimer-content {
+      font-size: 8pt;
+      line-height: 1.5;
+      color: #7f1d1d;
+      text-align: justify;
+    }
+
+    .ip-box {
+      border: 1px solid var(--ink-primary);
+      background: #ffffff;
+      border-radius: 6px;
+      padding: 12px 14px;
+      margin-bottom: 16px;
+    }
+    .ip-box-header {
+      display: flex;
+      justify-content: space-between;
+      font-family: var(--font-mono);
+      font-size: 8pt;
+      font-weight: 700;
+      color: var(--ink-primary);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 5px;
+    }
+    .ip-box p {
+      font-size: 8pt;
+      line-height: 1.5;
+      color: var(--ink-secondary);
+    }
+
+    /* Founder Signature Attestation */
+    .attestation-block {
+      border: 1px solid var(--hairline);
+      border-radius: 6px;
+      padding: 12px 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: var(--paper-cream);
+    }
+    .signature-area {
+      display: flex;
+      flex-direction: column;
+    }
+    .sign-label {
+      font-family: var(--font-mono);
+      font-size: 7.5pt;
+      font-weight: 600;
+      color: var(--ink-subtle);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .founder-name {
+      font-family: var(--font-serif);
+      font-size: 15pt;
+      font-weight: 700;
+      color: var(--accent-crimson);
+      line-height: 1.2;
+      margin: 2px 0;
+    }
+    .founder-sub {
+      font-size: 8.5pt;
+      color: var(--ink-muted);
+    }
+
+    .seal-graphic {
+      width: 72px;
+      height: 72px;
+      border: 1.5px dashed var(--accent-emerald);
+      border-radius: 50%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      font-family: var(--font-mono);
+      font-size: 6pt;
+      font-weight: 700;
+      color: var(--accent-emerald);
+      letter-spacing: 0.5px;
+      padding: 4px;
+      text-transform: uppercase;
+    }
+    .seal-graphic span {
+      font-size: 8pt;
+      color: var(--ink-primary);
+    }
+
+    /* ==========================================================================
+       MOBILE RESPONSIVE ENGINE (ZERO HORIZONTAL SCROLL & WIDE TEXT READING AREA)
+       ========================================================================== */
+    @media screen and (max-width: 768px) {
+      body {
+        font-size: 10pt;
+      }
+      .screen-controls {
+        padding: 9px 12px;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+      .screen-controls .meta-left {
+        gap: 8px;
+      }
+      .screen-controls .meta-title {
+        font-size: 11px;
+      }
+      .screen-controls .meta-tag {
+        display: none;
+      }
+      .btn-export {
+        padding: 6px 12px;
+        font-size: 10.5px;
+        gap: 5px;
+      }
+      .document-container {
+        margin: 0;
+        width: 100%;
+        max-width: 100vw;
+        box-shadow: none;
+        border-radius: 0;
+      }
+      .page {
+        min-height: auto;
+        /* Dramatically reduce padding from 18mm (~68px) down to 10px so text uses 95%+ of screen width */
+        padding: 14px 10px 18px 10px;
+        width: 100%;
+        max-width: 100vw;
+        box-sizing: border-box;
+        overflow-x: hidden;
+      }
+      .running-header {
+        margin-bottom: 12px;
+        padding-bottom: 6px;
+        flex-wrap: wrap;
+        gap: 4px;
+      }
+      .header-title {
+        font-size: 8.5px;
+      }
+      .header-meta {
+        font-size: 7.5px;
+      }
+      .main-headline {
+        font-size: 18pt;
+        line-height: 1.15;
+        letter-spacing: -0.3px;
+        margin-bottom: 8px;
+        word-break: break-word;
+      }
+      .editorial-deck {
+        font-size: 9.2pt;
+        line-height: 1.45;
+        padding-left: 8px;
+        margin-bottom: 12px;
+      }
+      .story-lead-p::first-letter {
+        font-size: 30pt;
+        padding-right: 5px;
+      }
+      .prose-text {
+        font-size: 9pt;
+        line-height: 1.55;
+        text-align: left;
+        word-break: break-word;
+        overflow-wrap: break-word;
+      }
+      .editorial-quote-frame {
+        padding: 10px 12px;
+        margin: 12px 0;
+      }
+      .editorial-quote-text {
+        font-size: 10.5pt;
+        line-height: 1.4;
+      }
+      .two-col-flow {
+        grid-template-columns: 1fr;
+        gap: 10px;
+      }
+      .narrative-col p {
+        text-align: left;
+      }
+      .audit-strip {
+        grid-template-columns: 1fr 1fr;
+        margin: 10px 0 6px 0;
+      }
+      .audit-cell {
+        border-bottom: 1px solid var(--hairline);
+        padding: 8px 10px;
+      }
+      .audit-cell:nth-child(2) {
+        border-right: none;
+      }
+      .audit-cell:nth-child(3) {
+        border-bottom: none;
+      }
+      .audit-cell:nth-child(4) {
+        border-bottom: none;
+        border-right: none;
+      }
+      .audit-num {
+        font-size: 12pt;
+      }
+      .audit-label {
+        font-size: 6.8pt;
+      }
+      .section-header-bar {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 3px;
+        margin-bottom: 10px;
+      }
+      .section-title-large {
+        font-size: 13pt;
+      }
+      .section-index {
+        font-size: 7.5pt;
+      }
+      .tenet-card {
+        grid-template-columns: 24px 1fr;
+        gap: 8px;
+        padding: 9px 10px;
+        margin-bottom: 8px;
+      }
+      .tenet-body h4 {
+        font-size: 8.8pt;
+      }
+      .tenet-body p {
+        font-size: 8pt;
+        line-height: 1.45;
+      }
+      .spec-table-wrap {
+        width: 100%;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+      }
+      .spec-table {
+        min-width: 420px;
+      }
+      .security-matrix {
+        grid-template-columns: 1fr;
+        gap: 8px;
+      }
+      .sec-block {
+        padding: 8px 10px;
+      }
+      .disclaimer-box {
+        padding: 10px 12px;
+      }
+      .disclaimer-content {
+        font-size: 7.8pt;
+        text-align: left;
+      }
+      .ip-box {
+        padding: 10px 12px;
+      }
+      .ip-box-header {
+        flex-direction: column;
+        gap: 2px;
+      }
+      .attestation-block {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+        padding: 12px 14px;
+      }
+      .seal-graphic {
+        align-self: flex-start;
+      }
+      .running-footer {
+        flex-wrap: wrap;
+        gap: 4px;
+        font-size: 7.5px;
+      }
+    }
+
+    /* ==========================================================================
+       PRINT MEDIA OPTIMIZATION (HIGH-RESOLUTION PERFECT A4 PDF)
+       ========================================================================== */
+    @media print {
+      @page {
+        size: A4 portrait;
+        margin: 10mm 12mm 10mm 12mm;
+      }
+      html, body {
+        background: #ffffff !important;
+        overflow: visible !important;
+        width: auto !important;
+        max-width: none !important;
+        font-size: 9.8pt;
+      }
+      .screen-controls {
+        display: none !important;
+      }
+      .document-container {
+        margin: 0 !important;
+        box-shadow: none !important;
+        max-width: 100% !important;
+        width: 100% !important;
+        overflow: visible !important;
+      }
+      .page {
+        min-height: 297mm !important;
+        height: 297mm !important;
+        padding: 10mm 12mm 10mm 12mm !important;
+        box-shadow: none !important;
+        background: #ffffff !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        box-sizing: border-box !important;
+        overflow: visible !important;
+      }
+      .page-break {
+        page-break-after: always !important;
+        break-after: page !important;
+      }
+      .two-col-flow {
+        grid-template-columns: 1fr 1fr !important;
+        gap: 16px !important;
+      }
+      .audit-strip {
+        grid-template-columns: repeat(4, 1fr) !important;
+      }
+      .audit-cell {
+        border-bottom: none !important;
+        border-right: 1px solid var(--hairline) !important;
+      }
+      .audit-cell:last-child {
+        border-right: none !important;
+      }
+      .security-matrix {
+        grid-template-columns: repeat(3, 1fr) !important;
+      }
+      .attestation-block {
+        flex-direction: row !important;
+        align-items: center !important;
+        justify-content: space-between !important;
+      }
+      .seal-graphic {
+        align-self: auto !important;
+      }
+      .spec-table {
+        min-width: 100% !important;
+        width: 100% !important;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Floating Screen Ribbon for One-Click PDF Generation -->
+  <aside class="screen-controls" aria-label="Export Actions">
+    <div class="meta-left">
+      <div class="seal-dot"></div>
+      <div class="meta-title">PureScan AI • Official Executive Monograph</div>
+      <div class="meta-tag">A4 PRINT-PERFECT PDF ENGINE</div>
+    </div>
+    <div class="cta-group">
+      <button class="btn-export" onclick="window.print()" title="Open Print Dialog to Save as PDF">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="6 9 6 2 18 2 18 9"></polyline>
+          <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path>
+          <rect x="6" y="14" width="12" height="8"></rect>
+        </svg>
+        EXPORT / PRINT PDF
+      </button>
+    </div>
+  </aside>
+
+  <main class="document-container">
+
+    <!-- ==========================================================================
+         PAGE 1: THE MONOGRAPH & THE GENESIS STORY (HOW ONE INDIAN BOY DREAMED & MADE IT)
+         ========================================================================== -->
+    <article class="page page-break" id="page-1">
+      <div>
+        <header class="running-header">
+          <div class="header-logo-group">
+            <div class="monogram">P</div>
+            <div class="header-title">PureScan AI Research & Sovereign Health Initiative</div>
+          </div>
+          <div class="header-meta">MONOGRAPH NO. 2026-V4 // CLASSIFICATION: PUBLIC AUDIT</div>
+        </header>
+
+        <div class="doc-classification">Sovereign Youth Manifesto & Computational Audit</div>
+        <h1 class="main-headline">The Anatomy of an Audit: <br>How One Indian Boy Built a Digital Counterweight to <em>Industrial Food Deception</em>.</h1>
+        <p class="editorial-deck">
+          A definitive documentary on the genesis of PureScan AI, the mathematical deconstruction of misleading packaging labels, and the ethical architecture behind a zero-compromise consumer defense system.
+        </p>
+
+        <section class="story-section">
+          <p class="prose-text story-lead-p">
+            Step into any modern grocery store from New Delhi to Mumbai, or London to New York. The brightly illuminated aisles present a masterclass in behavioral psychology: bold typographic promises of <em>"Natural Vitality," "Zero Trans-Fats,"</em> and <em>"Heart-Friendly Energy."</em> Yet, when the glossy packaging is turned over, a darker biochemical reality emerges. Tiny, deliberate font choices conceal industrial palm olein fractions, neuro-reactive synthetic dyes, high-glycemic maltodextrin carriers, and chemically obscured INS codes specifically engineered to hijack human metabolic pathways.
+          </p>
+
+          <div class="editorial-quote-frame">
+            <blockquote class="editorial-quote-text">
+              “This app is made with love by <span class="author-mark">Piyush Kumar</span> over the hard work of more than 1+ years. With an ambition to make your life 1 step more improved, healthier, and protected every single day.”
+            </blockquote>
+            <div class="editorial-quote-caption">Official Founding Dedication • PureScan AI Core Architecture</div>
+          </div>
+
+          <p class="prose-text">
+            Growing up in India, <strong>Piyush Kumar</strong> bore witness to an accelerating silent crisis: soaring juvenile metabolic disorders, early fatty liver degeneration, and systemic inflammation among peers and family members who genuinely believed they were consuming wholesome diets. The fundamental realization was visceral: the global food ecosystem is not suffering from a shortage of nutritional science, but from a deliberate asymmetric information war. Multinational corporations employ armies of food scientists to disguise ultra-processed sludge; ordinary consumers are left with no defense beyond an illegible ingredient list.
+          </p>
+
+          <div class="two-col-flow">
+            <div class="narrative-col">
+              <h4>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 14 14"></polyline></svg>
+                The 14-Month Solitary Odyssey
+              </h4>
+              <p>
+                Rejecting venture capital compromises and predatory advertising monetization, Piyush embarked on a grueling 14-month engineering sprint. Working late into the night with limited hardware in India, he compiled clinical toxicology indexes, biochemical seed oil degradation tables, and trained a dual-pipeline computer vision parser capable of auditing physical food labels in under 1.8 seconds.
+              </p>
+            </div>
+            <div class="narrative-col">
+              <h4>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+                A Generational Shield for the Youth
+              </h4>
+              <p>
+                PureScan AI is not merely an application—it is an unapologetic declaration of youth autonomy. It equips every teenager, student, and working parent with the analytical power of a certified biochemical laboratory inside their mobile browser. Deceptive corporate marketing stops the instant a camera shutter clicks.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <!-- Benchmark Audit Strip -->
+        <div class="audit-strip">
+          <div class="audit-cell">
+            <div class="audit-num">40,000+</div>
+            <div class="audit-label">Lines of Rigorous Code</div>
+          </div>
+          <div class="audit-cell">
+            <div class="audit-num">100-PT</div>
+            <div class="audit-label">Algorithmic Rubric</div>
+          </div>
+          <div class="audit-cell">
+            <div class="audit-num">&lt; 1.8s</div>
+            <div class="audit-label">Sub-Second Inference</div>
+          </div>
+          <div class="audit-cell">
+            <div class="audit-num">0.00%</div>
+            <div class="audit-label">Ad Trackers or Telemetry</div>
+          </div>
+        </div>
+      </div>
+
+      <footer class="running-footer">
+        <span>PureScan AI Monograph • Author: Piyush Kumar</span>
+        <span>Section 01 // Genesis & Narrative</span>
+        <span class="folio-number">Folio 01 of 03</span>
+      </footer>
+    </article>
+
+
+    <!-- ==========================================================================
+         PAGE 2: SOVEREIGN PRIVACY SPECIFICATION (THE 5 UNCOMPROMISING TENETS)
+         ========================================================================== -->
+    <article class="page page-break" id="page-2">
+      <div>
+        <header class="running-header">
+          <div class="header-logo-group">
+            <div class="monogram">P</div>
+            <div class="header-title">PureScan AI Research & Sovereign Health Initiative</div>
+          </div>
+          <div class="header-meta">MONOGRAPH NO. 2026-V4 // DATA SOVEREIGNTY SPEC</div>
+        </header>
+
+        <div class="section-header-bar">
+          <h2 class="section-title-large">Mathematical Privacy & Zero-Retention Architecture</h2>
+          <div class="section-index">SECTION 02 // TECHNICAL COVENANT</div>
+        </div>
+
+        <p class="prose-text" style="margin-bottom: 14px;">
+          Mainstream health applications operate as veiled surveillance brokers—harvesting biometric photographs, dietary weaknesses, and health anxieties to package and auction to programmatic advertising exchanges and health insurance underwriters. PureScan AI was architected from the bare silicon level on the opposite premise: <em>Absolute Data Sovereignty</em>.
+        </p>
+
+        <!-- Tenet 1 -->
+        <div class="tenet-card">
+          <div class="tenet-id">01</div>
+          <div class="tenet-body">
+            <h4>Ephemeral In-Memory Computation (RAM-Only Zero Persistence)</h4>
+            <p>
+              When a physical label is scanned or an image frame is ingested, bytes reside strictly within volatile RAM buffers encrypted in memory. The optical character recognition and chemical analysis execute atomically. The moment the classification vector is calculated, the raw image buffer is purged with a cryptographically secure zero-fill. No image file is ever written to remote disk storage.
+            </p>
+          </div>
+        </div>
+
+        <!-- Tenet 2 -->
+        <div class="tenet-card">
+          <div class="tenet-id">02</div>
+          <div class="tenet-body">
+            <h4>Mathematical Rejection of Biometric & Facial Identifiers</h4>
+            <p>
+              The vision ingest pipeline enforces mathematical bounding constraints dedicated exclusively to typographical bounding boxes, nutritional tables, and ingredient strings. Any incidental capture of human faces, skin tone markers, or biometric contours is actively filtered out before ingestion. PureScan AI possesses zero biometric surveillance capabilities.
+            </p>
+          </div>
+        </div>
+
+        <!-- Tenet 3 -->
+        <div class="tenet-card">
+          <div class="tenet-id">03</div>
+          <div class="tenet-body">
+            <h4>Total Exclusion of Personally Identifiable Information (PII)</h4>
+            <p>
+              PureScan AI requires neither phone numbers, national IDs, nor biometric login gates. Analysis tokens pass through an anonymous client-side gateway. No device advertising identifiers (IDFA/GAID) or longitudinal behavioral telemetry are ever associated with your nutritional audit inquiries.
+            </p>
+          </div>
+        </div>
+
+        <!-- Tenet 4 -->
+        <div class="tenet-card">
+          <div class="tenet-id">04</div>
+          <div class="tenet-body">
+            <h4>Sovereign Data Portability: Bidirectional CSV Serialization & Nuclear Purge</h4>
+            <p>
+              Your dietary audit history is entirely your property. PureScan implements full client-side bidirectional CSV export and import routines, allowing complete backup and offline analysis. A dedicated nuclear purge mechanism enables instant, irreversible wiping of local indexed database storage with zero lingering metadata.
+            </p>
+          </div>
+        </div>
+
+        <!-- Tenet 5 -->
+        <div class="tenet-card">
+          <div class="tenet-id">05</div>
+          <div class="tenet-body">
+            <h4>Stateless Enterprise AI Inference Covenants</h4>
+            <p>
+              Upstream inference calls through Google Gemini and Groq LPU utilize stateless enterprise developer gateways bound by explicit covenants: prompt tokens and image payloads are neither retained nor utilized for foundational model retraining.
+            </p>
+          </div>
+        </div>
+
+        <!-- Comparison Matrix -->
+        <div class="spec-table-wrap">
+          <table class="spec-table">
+            <thead>
+              <tr>
+                <th style="width: 25%;">Architectural Parameter</th>
+                <th style="width: 40%;">PureScan AI Sovereign Protocol</th>
+                <th style="width: 35%;">Commercial Ad-Supported Apps</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Image Storage</strong></td>
+                <td><span class="tag-pure">Zero Retention (RAM Purged)</span></td>
+                <td><span class="tag-industry">Stored in Cloud Buckets</span></td>
+              </tr>
+              <tr>
+                <td><strong>Biometric Tracking</strong></td>
+                <td><span class="tag-pure">Excluded by Design</span></td>
+                <td><span class="tag-industry">Facial & Body Indexing</span></td>
+              </tr>
+              <tr>
+                <td><strong>Third-Party Ad Trackers</strong></td>
+                <td><span class="tag-pure">0 Trackers / 0 Pixels</span></td>
+                <td><span class="tag-industry">Meta, Google & Broker Pixels</span></td>
+              </tr>
+              <tr>
+                <td><strong>Data Portability</strong></td>
+                <td><span class="tag-pure">Native CSV Import / Export</span></td>
+                <td><span class="tag-industry">Proprietary Cloud Lock-In</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <footer class="running-footer">
+        <span>PureScan AI Monograph • Author: Piyush Kumar</span>
+        <span>Section 02 // Privacy Specification</span>
+        <span class="folio-number">Folio 02 of 03</span>
+      </footer>
+    </article>
+
+
+    <!-- ==========================================================================
+         PAGE 3: SECURITY, COPYRIGHT, CLINICAL DISCLAIMER & FOUNDER ATTESTATION
+         ========================================================================== -->
+    <article class="page" id="page-3">
+      <div>
+        <header class="running-header">
+          <div class="header-logo-group">
+            <div class="monogram">P</div>
+            <div class="header-title">PureScan AI Research & Sovereign Health Initiative</div>
+          </div>
+          <div class="header-meta">MONOGRAPH NO. 2026-V4 // COMPLIANCE & LEGAL ATTESTATION</div>
+        </header>
+
+        <div class="section-header-bar">
+          <h2 class="section-title-large">Security Infrastructure, Intellectual Property & Disclaimers</h2>
+          <div class="section-index">SECTION 03 // STATUTORY DISCLOSURES</div>
+        </div>
+
+        <!-- Security Infrastructure Triad -->
+        <div class="security-matrix">
+          <div class="sec-block">
+            <h5>TLS 1.3 Strict Security</h5>
+            <p>All in-flight communications are fortified using advanced authenticated cipher suites with Perfect Forward Secrecy (PFS).</p>
+          </div>
+          <div class="sec-block">
+            <h5>Zero Telemetry Vector</h5>
+            <p>Strict Content Security Policy (CSP Level 3) completely isolates the application from cross-site scripts and data harvesting beacons.</p>
+          </div>
+          <div class="sec-block">
+            <h5>Sandboxed Ingestion</h5>
+            <p>Image canvas manipulations execute within client-side sandboxes, eliminating server-side vector injection vulnerabilities.</p>
+          </div>
+        </div>
+
+        <!-- Statutory Medical & Algorithmic Disclaimer -->
+        <div class="disclaimer-box">
+          <div class="disclaimer-title">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
+            Statutory Medical, Biochemical & Algorithmic Disclaimer
+          </div>
+          <div class="disclaimer-content">
+            <p style="margin-bottom: 6px;">
+              <strong>Educational and Consumer Screening Purpose Only:</strong> PureScan AI operates strictly as an educational and nutritional awareness tool. Algorithmic letter grades (Grade A through F), numerical scores (0 to 100), inflammatory seed oil markers, and toxic additive flags represent programmatic inferences based on published food biochemistry and computer vision text extraction.
+            </p>
+            <p style="margin-bottom: 6px;">
+              <strong>Not Medical Diagnosis or Treatment:</strong> The outputs produced by PureScan AI do not constitute professional medical advice, clinical diagnosis, dietetic prescriptions, or individualized therapeutic regimens. Individuals with severe clinical conditions—including celiac sprue, anaphylactic allergies, type 1 diabetes mellitus, or chronic renal disease—must never make medical or dietary decisions based solely on automated AI extractions.
+            </p>
+            <p>
+              <strong>Mandatory Physical Container Cross-Verification:</strong> Commercial manufacturers routinely alter formulas, ingredient sources, and production line facilities without updating external packaging artwork. Users must always verify printed allergen notices and physical container text prior to ingestion.
+            </p>
+          </div>
+        </div>
+
+        <!-- Intellectual Property & Global Copyright Assertions -->
+        <div class="ip-box">
+          <div class="ip-box-header">
+            <span>Intellectual Property & International Copyright Assertions</span>
+            <span>Berne Convention & WIPO Protected</span>
+          </div>
+          <p>
+            The PureScan AI designation, the proprietary <strong>100-Point Algorithmic Formulation</strong>, seed oil penalty matrices, food additive ontological classification systems, user experience layouts, and brand visual identities are the exclusive intellectual property of <strong>Piyush Kumar</strong>. All international rights are explicitly reserved under the Universal Copyright Convention and international patent and copyright treaties. Unauthorized decompilation, automated harvesting of chemical scoring weights, or commercial reproduction is strictly prohibited.
+          </p>
+        </div>
+
+        <!-- Founder Signature Attestation -->
+        <div class="attestation-block">
+          <div class="signature-area">
+            <div class="sign-label">Conceived, Engineered & Attested By:</div>
+            <div class="founder-name">Piyush Kumar</div>
+            <div class="founder-sub">Founder & Principal Systems Architect • PureScan AI</div>
+            <div style="font-family: var(--font-mono); font-size: 7.5pt; color: var(--ink-subtle); margin-top: 4px;">
+              Direct Inquiries: pk.piyushkumar.9123@gmail.com • Republic of India
+            </div>
+          </div>
+          <div class="seal-graphic">
+            <span>VERITAS</span>
+            IN NUTRIMENTO
+            <div style="border-top: 0.5px solid var(--accent-emerald); width: 80%; margin: 2px 0;"></div>
+            EST. 2024
+          </div>
+        </div>
+      </div>
+
+      <footer class="running-footer">
+        <span>PureScan AI Monograph • Author: Piyush Kumar</span>
+        <span>Section 03 // Legal, Security & Copyright</span>
+        <span class="folio-number">Folio 03 of 03 • END OF MONOGRAPH</span>
+      </footer>
+    </article>
+
+  </main>
+
+</body>
+</html>

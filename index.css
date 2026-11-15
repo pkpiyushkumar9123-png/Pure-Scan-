@@ -1,0 +1,433 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=JetBrains+Mono:wght@400;500&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-serif: "Playfair Display", ui-serif, Georgia, serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+  
+  --color-healthy-green: #34C759;
+  --color-warning-amber: #FF9500;
+  --color-critical-red: #FF3B30;
+  --color-off-white: #F2F2F7;
+  --color-dark-bg: #0B0E14;
+  --color-dark-card: #151921;
+  --color-dark-border: #222832;
+}
+
+:root {
+  --app-bg: #F2F2F7;
+  --app-text: #000000;
+}
+
+.dark {
+  --app-bg: #0B0E14;
+  --app-text: #F2F2F7;
+}
+
+body {
+  background-color: var(--app-bg);
+  color: var(--app-text);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* PDF Export Styles (Clinical Report Aesthetic - High Density, Zero Waste) */
+.export-mode-active {
+  width: 1024px !important;
+  margin: 0 auto !important;
+  background: white !important;
+  padding: 16px 22px !important; /* Balanced density, zero dead white space */
+  display: flex !important;
+  flex-direction: column !important;
+  box-sizing: border-box !important;
+  box-shadow: none !important;
+  border: none !important;
+  height: auto !important;
+  min-height: 0 !important;
+  overflow: visible !important;
+}
+
+.export-mode {
+  background: white !important;
+  color: #0f172a !important;
+  color-scheme: light !important;
+}
+
+.export-mode * {
+  animation-play-state: paused !important;
+  transition: none !important;
+}
+
+/* Typography Overrides for Export - Crisp Clinical Density */
+.export-mode .serif-header {
+  font-family: var(--font-serif) !important;
+  letter-spacing: -0.02em !important;
+}
+
+.export-mode .serif-title {
+  font-family: var(--font-serif) !important;
+  font-weight: 900 !important;
+  font-size: 20px !important;
+  line-height: 1.15 !important;
+}
+
+/* Force light mode colors in PDF */
+.export-mode,
+.export-mode .dark\:text-white,
+.export-mode .dark\:bg-dark-card,
+.export-mode .dark\:bg-dark-bg {
+  color: #0f172a !important;
+}
+
+.export-mode .dark\:bg-dark-card,
+.export-mode .dark\:bg-dark-bg {
+  background-color: #ffffff !important;
+}
+
+.export-mode .dark\:border-white,
+.export-mode .dark\:border-dark-border {
+  border-color: #e2e8f0 !important;
+}
+
+.export-mode .bg-gray-50,
+.export-mode .dark\:bg-slate-900 {
+  background-color: #f8fafc !important;
+}
+
+/* Impact Summary in Export Mode - Clinical Executive Row */
+.export-mode #pdf-impact-summary-section,
+.export-mode .impact-summary-section {
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  gap: 14px !important;
+  padding: 10px 16px !important;
+  background: #f8fafc !important;
+  border: 1px solid #e2e8f0 !important;
+  border-radius: 14px !important;
+  margin: 4px 0 !important;
+  width: 100% !important;
+  box-sizing: border-box !important;
+}
+
+.export-mode #pdf-impact-summary-section .impact-gauge-box {
+  flex-shrink: 0 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+}
+
+.export-mode #pdf-impact-summary-section .w-48.h-48 {
+  width: 80px !important;
+  height: 80px !important;
+}
+
+.export-mode #pdf-impact-summary-section .text-7xl {
+  font-size: 2rem !important;
+  line-height: 1 !important;
+}
+
+.export-mode #pdf-impact-summary-section .impact-text-wrapper {
+  flex: 1 !important;
+  text-align: left !important;
+  max-width: none !important;
+  padding: 0 12px !important;
+}
+
+.export-mode #pdf-impact-summary-section .impact-text-wrapper h3 {
+  font-size: 9px !important;
+  letter-spacing: 0.15em !important;
+}
+
+.export-mode #pdf-impact-summary-section .impact-text-wrapper p {
+  font-size: 16px !important;
+  line-height: 1.2 !important;
+}
+
+.export-mode #pdf-impact-summary-section .impact-cards-grid {
+  width: 210px !important;
+  flex-shrink: 0 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 5px !important;
+  max-width: none !important;
+}
+
+.export-mode #pdf-impact-summary-section .impact-cards-grid > div {
+  padding: 6px 10px !important;
+  border-radius: 8px !important;
+}
+
+.export-mode button {
+  pointer-events: none !important;
+  cursor: default !important;
+  transform: none !important;
+  transition: none !important;
+  box-shadow: none !important;
+}
+
+/* Card aesthetics for PDF - Balanced Density & Premium Clinical Visuals */
+.export-mode .ingredient-card {
+  border-radius: 12px !important;
+  border: 1.5px solid #e2e8f0 !important;
+  padding: 10px 14px !important;
+  margin-bottom: 8px !important;
+  background: #ffffff !important;
+}
+
+.export-mode .ingredient-card h4 {
+  font-size: 16px !important;
+  font-weight: 900 !important;
+  color: #0f172a !important;
+}
+
+.export-mode .ingredient-card p {
+  font-size: 11px !important;
+  line-height: 1.4 !important;
+  color: #334155 !important;
+}
+
+.export-mode .ingredient-card button {
+  padding: 3px 8px !important;
+  border-radius: 6px !important;
+  font-size: 10px !important;
+  font-weight: 800 !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 4px !important;
+}
+
+.export-mode #result-family-compatibility-card {
+  padding: 12px 16px !important;
+  margin-top: 6px !important;
+  border-radius: 14px !important;
+  border: 1.5px solid #c7d2fe !important;
+  background: linear-gradient(135deg, #f0fdf4 0%, #ffffff 50%, #eff6ff 100%) !important;
+}
+
+.export-mode #result-family-compatibility-card .grid {
+  display: grid !important;
+  grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+  gap: 8px !important;
+}
+
+.export-mode #result-family-compatibility-card .p-3\.5 {
+  padding: 8px 10px !important;
+  border-radius: 10px !important;
+}
+
+.export-mode #global-regulatory-ban-tracker-card {
+  padding: 12px 16px !important;
+  margin-top: 6px !important;
+  border-radius: 14px !important;
+  border: 1.5px solid #fde68a !important;
+  background: linear-gradient(135deg, #fffbeb 0%, #ffffff 60%, #f8fafc 100%) !important;
+}
+
+.export-mode #global-regulatory-ban-tracker-card .grid {
+  display: grid !important;
+  grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+  gap: 8px !important;
+}
+
+.export-mode #global-regulatory-ban-tracker-card button {
+  padding: 8px 10px !important;
+  border-radius: 10px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+}
+
+.export-mode .swap-card {
+  padding: 12px 16px !important;
+  margin-top: 8px !important;
+  border-radius: 14px !important;
+  background: #0b1120 !important;
+  border: 1.5px solid #22c55e !important;
+  color: #ffffff !important;
+}
+
+.export-mode .swap-card h4 {
+  font-size: 16px !important;
+  font-weight: 900 !important;
+  color: #ffffff !important;
+}
+
+.export-mode .swap-card p {
+  font-size: 11px !important;
+  line-height: 1.35 !important;
+  color: #86efac !important;
+}
+
+.export-mode .medical-verification-section {
+  padding-top: 12px !important;
+  margin-top: 8px !important;
+  border-top: 1.5px solid #cbd5e1 !important;
+}
+
+.export-mode .medical-verification-section p {
+  font-size: 10px !important;
+  line-height: 1.4 !important;
+  color: #475569 !important;
+}
+
+.export-mode #pdf-verification-card {
+  padding: 10px 14px !important;
+  border-radius: 14px !important;
+  border: 2px solid #0f172a !important;
+  background: #ffffff !important;
+  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.08) !important;
+}
+
+.export-mode #pdf-verification-qr-box {
+  padding: 4px !important;
+  border-radius: 8px !important;
+  border: 1px solid #e2e8f0 !important;
+}
+
+.export-mode #pdf-verification-qr-img {
+  width: 82px !important;
+  height: 82px !important;
+  display: block !important;
+  margin: 0 auto !important;
+}
+
+.export-mode .pdf-section {
+  break-inside: avoid !important;
+  page-break-inside: avoid !important;
+  position: relative !important;
+}
+
+/* Compact overrides to maximize density without clutter */
+.export-mode .report-container {
+  gap: 8px !important;
+}
+
+.export-mode .space-y-12 > :not([hidden]) ~ :not([hidden]) {
+  margin-top: 8px !important;
+}
+
+.export-mode .space-y-8 > :not([hidden]) ~ :not([hidden]) {
+  margin-top: 6px !important;
+}
+
+.export-mode .space-y-6 > :not([hidden]) ~ :not([hidden]) {
+  margin-top: 6px !important;
+}
+
+.export-mode .space-y-5 > :not([hidden]) ~ :not([hidden]) {
+  margin-top: 5px !important;
+}
+
+.export-mode .space-y-4 > :not([hidden]) ~ :not([hidden]) {
+  margin-top: 4px !important;
+}
+
+.export-mode .pt-12,
+.export-mode .pt-20 {
+  padding-top: 10px !important;
+}
+
+.export-mode .p-6,
+.export-mode .p-8,
+.export-mode .p-10 {
+  padding: 10px 14px !important;
+}
+
+.export-mode .rounded-\[40px\],
+.export-mode .rounded-3xl {
+  border-radius: 12px !important;
+}
+
+.export-mode .blur-2xl {
+  display: none !important;
+}
+
+.pdf-spacer {
+  background: white !important;
+  display: block !important;
+  width: 100% !important;
+}
+
+.export-mode .ingredient-card-high {
+  background-color: #FFF1F2 !important; /* Soft red tint */
+}
+
+.export-mode .ingredient-card-medium {
+  background-color: #FFFBEB !important; /* Soft amber tint */
+}
+
+/* Semantic colors reset */
+.export-mode .text-healthy-green { color: #16A34A !important; }
+.export-mode .text-warning-amber { color: #D97706 !important; }
+.export-mode .text-critical-red { color: #DC2626 !important; }
+
+.export-mode .hidden {
+  display: block !important;
+}
+
+.export-mode .print\:hidden {
+  display: none !important;
+}
+
+.export-mode .print\:flex {
+  display: flex !important;
+}
+
+.export-mode .print\:grid {
+  display: grid !important;
+}
+
+.export-mode .print\:mt-4 {
+  margin-top: 0.75rem !important;
+}
+
+.export-mode .shadow-2xl, 
+.export-mode .shadow-lg,
+.export-mode .shadow-sm {
+  box-shadow: none !important;
+}
+
+.export-mode h1, .export-mode h2, .export-mode h3 {
+  color: #0F172A !important; /* Deep charcoal navy */
+}
+
+/* Custom Dividers */
+.export-mode .pdf-divider {
+  height: 1px !important;
+  background-color: #e2e8f0 !important;
+  width: 100% !important;
+  margin: 12px 0 !important;
+}
+
+/* Physiological Human Heartbeat Animation (Lub-Dub Double Systole Pulse at ~68 BPM) */
+@keyframes humanHeartbeat {
+  0% {
+    transform: scale(1);
+    filter: none;
+  }
+  14% {
+    transform: scale(1.32);
+    filter: drop-shadow(0 0 6px rgba(52, 199, 89, 0.75));
+  }
+  26% {
+    transform: scale(1.08);
+    filter: drop-shadow(0 0 2px rgba(52, 199, 89, 0.4));
+  }
+  40% {
+    transform: scale(1.38);
+    filter: drop-shadow(0 0 8px rgba(52, 199, 89, 0.85));
+  }
+  56% {
+    transform: scale(1);
+    filter: none;
+  }
+  100% {
+    transform: scale(1);
+    filter: none;
+  }
+}

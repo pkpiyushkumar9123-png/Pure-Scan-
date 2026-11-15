@@ -1,0 +1,6 @@
+{
+  "name": "PureScan AI",
+  "description": "Stop guessing. Start auditing. PureScan uses advanced Computer Vision and AI to cut through food marketing fluff and give you the raw truth in seconds.",
+  "requestFramePermissions": ["camera"],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
